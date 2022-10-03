@@ -1,20 +1,18 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 
 class CreateCinemaSchema extends Migration
 {
     /**
-    # Create a migration that creates all tables for the following user stories
+     *Create a migration that creates all tables for the following user stories
 
-    For an example on how a UI for an api using this might look like, please try to book a show at https://in.bookmyshow.com/.
-    To not introduce additional complexity, please consider only one cinema.
+     *For an example on how a UI for an api using this might look like, please try to book a show at https://in.bookmyshow.com/.
+     *To not introduce additional complexity, please consider only one cinema.
 
-    Please list the tables that you would create including keys, foreign keys and attributes that are required by the user stories.
+     *Please list the tables that you would create including keys, foreign keys and attributes that are required by the user stories.
 
-    ## User Stories
+     *## User Stories
 
      **Movie exploration**
      * As a user I want to see which films can be watched and at what times

@@ -94,6 +94,29 @@ class MenuController extends BaseController
      */
 
     public function getMenuItems() {
-        throw new \Exception('implement in coding task 3');
+        $menuItems = MenuItem::all()->map(function($item) {
+            return collect($item)->merge(['children' => []]);
+        });
+        
+        $menuIdMap = $menuItems->reduce(function($item, $initial, $index){
+            $item[$initial['id']] = $index;
+            return $item;
+        });
+        
+        $root = null;
+        
+        $menuItems->each(function($menuItem) use(&$root, $menuIdMap, &$menuItems) {
+            
+            if(!$menuItem['parent_id']) {
+                $root = $menuItem;
+                return;
+            }
+            
+            $parentEl = $menuItems[$menuIdMap[$menuItem['parent_id']]];
+            
+            $parentEl['children'] = collect(($parentEl['children'] ?? []))->push($menuItem);
+        });
+        
+        return response()->json([$root]);
     }
 }
